@@ -10,7 +10,10 @@ public:
     vector<Board_Tile> nextConfigs();
     int numMoves();
     int Manhattan_Distance(const Board_Tile &goalconfig);
+    string getConfig();
+    void setConfig(string s);
 
+private:
     string config;
     string movesFromStart;
 };
