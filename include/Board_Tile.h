@@ -3,6 +3,9 @@
 #include <vector>
 using namespace std;
 
+#ifndef BOARD_TILE_H
+#define BOARD_TILE_H
+
 class Board_Tile
 {
 public:
@@ -30,3 +33,5 @@ private:
     string config;
     string movesFromStart;
 };
+
+#endif

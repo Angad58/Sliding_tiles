@@ -1,4 +1,6 @@
-#include "Board.h"
+#include "Board_Tile.h"
+#include <vector>
+
 Board_Tile::Board_Tile(const string &s) : config(s)
 {
 }
