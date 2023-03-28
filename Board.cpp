@@ -31,7 +31,7 @@ string Board_Tile::move(int t,char m)
     if(m =='D')
     if(m =='L')
     if(m =='R')
-
+    return "";
 }
 
 string Board_Tile::getConfig()
