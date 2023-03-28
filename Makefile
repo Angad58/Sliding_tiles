@@ -12,7 +12,7 @@
 ################################################################################
 
 # Executable names
-PROJECT = rummy
+PROJECT = Sliding_tiles
 GTEST = test_${PROJECT}
 
 # Compilation command and flags
