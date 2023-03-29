@@ -1,6 +1,4 @@
 #include <iostream>
-
-#include "../include/Board_Tile.h"
 #include "Sliding_solver.h"
 
 using namespace std;
@@ -20,13 +18,13 @@ int main()
     }
     else
     {
-        cin >> goal;
+        goal = input;
     }
     Board_Tile G(goal);
-    start = B.getConfig();
-    finish = G.getConfig();
-    Sliding_Solver *S = new Sliding_Solver(start, finish);
-    S->Solve_Puzzle();
-
+    // start = B.getConfig();
+    // finish = G.getConfig();
+    // Sliding_Solver *S = new Sliding_Solver(start, finish);
+    // S->Solve_Puzzle();
+    G.printConfig();
     return 0;
 }
