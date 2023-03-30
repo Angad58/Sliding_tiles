@@ -12,6 +12,8 @@ class Board_Tile
 public:
     /*Constructor, intializes the config of board object with the passed string */
     Board_Tile(const string &s);
+    /*Copy Constructor */
+    Board_Tile(const Board_Tile &B);
     /*Returns a vector of all possible next configurations of the board object after 1 move*/
     vector<Board_Tile*> nextConfigs();
 
@@ -38,9 +40,10 @@ public:
     void calculateKey();
     Board_Tile* getParent();
    friend bool operator>(const Board_Tile &lhs, const Board_Tile &rhs);
+   string output (Board_Tile* p);
+   void setMove(char m);
 private:
     string config;
-    string movesFromStart;
     int key;
     Board_Tile *parent;
     char moveMade;

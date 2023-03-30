@@ -9,7 +9,7 @@ class Sliding_Solver
 {
 public:
     Sliding_Solver(string start, string goal);
-    void Solve_Puzzle();
+    int Solve_Puzzle();
 private:
     priority_queue<Board_Tile, vector<Board_Tile>, greater<int>> tileQueue;
     string start;
