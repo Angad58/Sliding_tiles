@@ -10,7 +10,7 @@ Board_Tile::Board_Tile(const Board_Tile &b)
     this->parent = b.parent;
     this->moveMade = b.moveMade;
 }
-vector<Board_Tile*> Board_Tile::nextConfigs()
+vector<Board_Tile*> Board_Tile::nextConfigs(const Board_Tile &g)
 {
  vector<Board_Tile*> nextconfigs;
     for (int i = 0; i < 9; i++)
@@ -70,20 +70,13 @@ vector<Board_Tile*> Board_Tile::nextConfigs()
         }
     }
     for(int i=0;i<nextconfigs.size();i++){
-        nextconfigs[i]->calculateKey();
+        nextconfigs[i]->calculateKey(g);
     }
-    // for(int i=0;i<nextconfigs.size();i++){
-    //     cout<<"Next Config:"<<endl;
-    //     nextconfigs[i]->printConfig();
-    //     cout<<"Parent Config:"<<endl;
-    //     nextconfigs[i]->getParent()->printConfig();
-    //     cout<<"Move made from parent: "<<nextconfigs[i]->moveMade<<endl;
-    // }
     return nextconfigs;
 }
-int Board_Tile::Manhattan_Distance()
+int Board_Tile::Manhattan_Distance(const Board_Tile &g)
 {
-    string goal = "123456780";
+    string goal = g.config;
    int distance = 0;
     for (int i = 0; i < 9; i++)
     {
@@ -109,7 +102,6 @@ string Board_Tile::move(int t,char m)
         if(t/3 == 1||t/3 == 2){
             swap(config[t],config[t-3]);
             this->setMove(m);
-            //cout<<"Move maid: "<<this->moveMade<<endl;
         }
         else{
             cout << "Invalid Move" << endl;
@@ -120,7 +112,6 @@ string Board_Tile::move(int t,char m)
         if(t/3 == 0||t/3 == 1){
             swap(config[t],config[t+3]);
             this->setMove(m);
-           // cout<<"Move maid: "<<this->moveMade<<endl;
         }
         else{
             cout << "Invalid Move" << endl;
@@ -131,7 +122,6 @@ string Board_Tile::move(int t,char m)
         if(t%3 == 1||t%3 == 2){
             swap(config[t],config[t-1]);
             this->setMove(m);
-           // cout<<"Move maid: "<<this->moveMade<<endl;
         }
         else{
             cout << "Invalid Move" << endl;
@@ -142,7 +132,6 @@ string Board_Tile::move(int t,char m)
         if(t%3 == 0||t%3 == 1){
             swap(config[t],config[t+1]);
             this->setMove(m);
-            //cout<<"Move maid: "<<this->moveMade<<endl;
         }
         else{
             cout << "Invalid Move" << endl;
@@ -177,9 +166,9 @@ void Board_Tile::printConfig()
     cout << "+-----------------+" << endl;
     }
 }
-bool Board_Tile::isGoal(){
+bool Board_Tile::isGoal(const Board_Tile &b){
     
-    if(this->config == "123456780"){
+    if(this->config == b.config){
         return true;
     }
     else{
@@ -207,35 +196,23 @@ void Board_Tile::setParent(Board_Tile *p)
 
 vector<char> Board_Tile::traceBack()
 {
-    //cout<<"start"<<endl;
     vector<char> moves;
     int numMoves = 0;
-    //cout<<"s1"<<endl;
     Board_Tile *Board = new Board_Tile(this->getConfig());
     Board = this;
-   // cout<<"s2"<<endl;
     while (Board->parent != nullptr) {
-       // cout<<"s3 start while"<<endl;
       moves.push_back(Board->moveMade);
       numMoves++;
-     // cout<<"Move = "<<Board->moveMade<<endl;
-      //  cout<<"s4"<<endl;
       Board = Board->parent;
-      //  cout<<"s5 end while"<<endl;
     }
-    //cout<<"s6"<<endl;
     reverse(moves.begin(), moves.end());
-   // cout<<"s7"<<endl;
-    // for(int i=0;i<moves.size();i++){
-    //     cout<<moves[i]<<endl;
-    // }
     cout<<"Number of moves: "<<numMoves<<endl;
     return moves;
 }
 
-void Board_Tile::calculateKey()
+void Board_Tile::calculateKey(const Board_Tile& g)
 {
-    this->key = numMoves() + Manhattan_Distance();
+    this->key = numMoves() + Manhattan_Distance(g);
 }
 
 Board_Tile* Board_Tile::getParent()

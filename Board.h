@@ -15,13 +15,13 @@ public:
     /*Copy Constructor */
     Board_Tile(const Board_Tile &B);
     /*Returns a vector of all possible next configurations of the board object after 1 move*/
-    vector<Board_Tile*> nextConfigs();
+    vector<Board_Tile*> nextConfigs(const Board_Tile &g);
 
     /*Returns the number of moves made from the inital configuration to the current configuration*/
     int numMoves();
 
     /*Returns the Manhattan distance between the current configuration and the goal configuration*/
-    int Manhattan_Distance();
+    int Manhattan_Distance(const Board_Tile &g);
 
     /*Returns the configuration of the board object after the move m is made*/
     string move(int t,char m);
@@ -34,10 +34,10 @@ public:
     /*Prints the configuration in a sliding tiles format*/
     void printConfig();
     /*Returns true if the current configuration is the goal configuration passed as parameter*/
-    bool isGoal(); 
+    bool isGoal(const Board_Tile &b); 
     void setParent(Board_Tile* p);
     vector<char> traceBack();
-    void calculateKey();
+    void calculateKey(const Board_Tile &g);
     Board_Tile* getParent();
    friend bool operator>(const Board_Tile &lhs, const Board_Tile &rhs);
    string output (Board_Tile* p);
