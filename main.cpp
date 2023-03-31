@@ -5,8 +5,7 @@ using namespace std;
 int main()
 {
 
-    string input, start;
-    string goal;
+    string input, start, goal;
     cout << "Enter Initial Configuration(as String): " << endl;
     cin >> input;
     Board_Tile B(input);

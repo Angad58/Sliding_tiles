@@ -7,10 +7,7 @@ Sliding_Solver::Sliding_Solver(string s, string g) : start(s), goal(g)
 
 int Sliding_Solver::Solve_Puzzle()
 {
-    set<string> visitedStates;
-
-    priority_queue<Board_Tile, vector<Board_Tile>, greater<Board_Tile>> tileQueue;
-    
+    set<string> visitedStates;  
     Board_Tile* initialConfig = new Board_Tile(start);
     Board_Tile FinalConfig(goal);
     initialConfig->setParent(nullptr);
@@ -25,8 +22,9 @@ int Sliding_Solver::Solve_Puzzle()
       tileQueue.pop();
 
       if (CurrentBoard->isGoal(FinalConfig.getConfig())) {
-        
         vector<char> moves = CurrentBoard->traceBack();
+        cout<<"Number of moves made to reach goal: "<<CurrentBoard->numMoves()<<endl;
+        cout<<"These are the moves to reach the goal configuration: ";
         for(unsigned int i = 0; i < moves.size(); i++)
         {
             cout<<moves[i];
@@ -47,6 +45,6 @@ int Sliding_Solver::Solve_Puzzle()
       }
     }
 }
-  cout<<"No Solution because of od number of swapped pairs"<<endl;
+  cout<<"No Solution because of odd number of swapped pairs"<<endl;
   return 0;
 }

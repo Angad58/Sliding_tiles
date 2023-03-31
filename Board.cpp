@@ -197,16 +197,13 @@ void Board_Tile::setParent(Board_Tile *p)
 vector<char> Board_Tile::traceBack()
 {
     vector<char> moves;
-    int numMoves = 0;
     Board_Tile *Board = new Board_Tile(this->getConfig());
     Board = this;
     while (Board->parent != nullptr) {
       moves.push_back(Board->moveMade);
-      numMoves++;
       Board = Board->parent;
     }
     reverse(moves.begin(), moves.end());
-    cout<<"Number of moves: "<<numMoves<<endl;
     return moves;
 }
 

@@ -11,7 +11,7 @@ public:
     Sliding_Solver(string start, string goal);
     int Solve_Puzzle();
 private:
-    priority_queue<Board_Tile, vector<Board_Tile>, greater<int>> tileQueue;
+    priority_queue<Board_Tile, vector<Board_Tile>, greater<Board_Tile>> tileQueue;
     string start;
     string goal;
 };
