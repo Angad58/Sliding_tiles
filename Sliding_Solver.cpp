@@ -25,7 +25,7 @@ int Sliding_Solver::Solve_Puzzle()
       tileQueue.pop();
 
       if (CurrentBoard->isGoal(FinalConfig.getConfig())) {
-        CurrentBoard->printConfig();
+        
         vector<char> moves = CurrentBoard->traceBack();
         for(unsigned int i = 0; i < moves.size(); i++)
         {
@@ -47,6 +47,6 @@ int Sliding_Solver::Solve_Puzzle()
       }
     }
 }
-  cout<<"No Solution"<<endl;
+  cout<<"No Solution because of od number of swapped pairs"<<endl;
   return 0;
 }

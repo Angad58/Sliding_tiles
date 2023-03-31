@@ -11,6 +11,7 @@ int main()
     cin >> input;
     Board_Tile B(input);
     B.setParent(nullptr);
+    
     cout<<"Enter D for default Goal configuration of 0123456780 or \nEnter goal Configuration(as String): "<<endl;
     cin>>input;
     if(input=="D"||input=="d")
@@ -21,6 +22,11 @@ int main()
     {
         goal = input;
     }
+    Board_Tile G(goal);
+    cout<<"Initial Configuration: "<<endl;
+    B.printConfig();
+    cout<<"Goal Configuration: "<<endl;
+    G.printConfig();
     start = B.getConfig();
     Sliding_Solver *S = new Sliding_Solver(start, goal);
     S->Solve_Puzzle();
