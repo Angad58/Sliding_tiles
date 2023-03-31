@@ -12,13 +12,13 @@ int Sliding_Solver::Solve_Puzzle()
     Board_Tile FinalConfig(goal);
     initialConfig->setParent(nullptr);
     initialConfig->calculateKey(FinalConfig);
-    tileQueue.push(*initialConfig);
+    tileQueue.push(initialConfig);
 
     visitedStates.insert(initialConfig->getConfig());
     
     while (!tileQueue.empty()) {
     
-      Board_Tile* CurrentBoard = new Board_Tile(tileQueue.top());
+      Board_Tile* CurrentBoard = tileQueue.top();
       tileQueue.pop();
 
       if (CurrentBoard->isGoal(FinalConfig.getConfig())) {
@@ -37,7 +37,7 @@ int Sliding_Solver::Solve_Puzzle()
     for (int i = 0; i < nextconfigs.size(); i++) {
         Board_Tile* child = nextconfigs[i];
         if (visitedStates.find(child->getConfig()) == visitedStates.end()) {
-        tileQueue.push(*child);
+        tileQueue.push(child);
         visitedStates.insert(child->getConfig());
       } else {
         delete child;

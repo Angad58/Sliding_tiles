@@ -13,7 +13,6 @@
 
 # Executable names
 PROJECT = Sliding_tiles
-GTEST = test_${PROJECT}
 
 # Compilation command and flags
 CXX=g++
@@ -24,7 +23,7 @@ LINKFLAGS= -lgtest -lgmock -lpthread
 
 # Directories
 SRC_DIR = src
-PROJECT_SRC_DIR = src/project
+PROJECT_SRC_DIR = src/main
 GTEST_DIR = test
 SRC_INCLUDE = include
 INCLUDE = -I ${SRC_INCLUDE}
@@ -60,7 +59,7 @@ clean-docs:
 
 .PHONY: clean-exec
 clean-exec:
-	rm -rf ${PROJECT} ${GTEST} ${PROJECT}.exe ${GTEST}.exe
+	rm -rf ${PROJECT} ${PROJECT}.exe
 
 .PHONY: clean-obj
 clean-obj:
@@ -70,7 +69,6 @@ clean-obj:
 clean-temp:
 	rm -rf *~ \#* .\#* \
 	${SRC_DIR}/*~ ${SRC_DIR}/\#* ${SRC_DIR}/.\#* \
-	${GTEST_DIR}/*~ ${GTEST_DIR}/\#* ${GTEST_DIR}/.\#* \
 	${SRC_INCLUDE}/*~ ${SRC_INCLUDE}/\#* ${SRC_INCLUDE}/.\#* \
 	${PROJECT_SRC_DIR}/*~ ${PROJECT_SRC_DIR}/\#* ${PROJECT_SRC_DIR}/.\#* \
 	${DESIGN_DIR}/*~ ${DESIGN_DIR}/\#* ${DESIGN_DIR}/.\#* \
@@ -91,13 +89,11 @@ clean: clean-cov clean-docs clean-exec clean-obj clean-temp
 
 # compilation for performing testing
 # using the files in include, src, and test, but not src/project
-${GTEST}: ${GTEST_DIR} ${SRC_DIR} clean-exec
-	${CXX} ${CXXFLAGS} -o ./${GTEST} ${INCLUDE} \
-	${GTEST_DIR}/*.cpp ${SRC_DIR}/*.cpp ${LINKFLAGS}
+
 
 # compilation for making the project
 # using the files in include, src, and src/project, but not test
-compileProject: ${SRC_DIR} ${PROJECT_SRC_DIR} clean-exec
+Sliding_tiles: ${SRC_DIR} ${PROJECT_SRC_DIR} clean-exec
 	${CXX} ${CXXVERSION} -o ${PROJECT} ${INCLUDE} \
 	${SRC_DIR}/*.cpp ${PROJECT_SRC_DIR}/*.cpp
 
@@ -106,7 +102,7 @@ compileProject: ${SRC_DIR} ${PROJECT_SRC_DIR} clean-exec
 ################################################################################
 
 # To perform all tests
-all: ${GTEST} memcheck coverage docs static style
+all: Sliding_tiles
 
 # To perform the memory checks
 memcheck: ${GTEST}
