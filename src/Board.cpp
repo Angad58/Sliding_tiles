@@ -5,7 +5,6 @@ Board_Tile::Board_Tile(const string &s) : config(s)
 }
 Board_Tile::Board_Tile(const Board_Tile &b)
 {
-    //cout<<"Copy Constructor"<<endl;
     this->config = b.config;
     this->parent = b.parent;
     this->moveMade = b.moveMade;
@@ -215,11 +214,6 @@ void Board_Tile::calculateKey(const Board_Tile& g)
 Board_Tile* Board_Tile::getParent()
 {
     return this->parent;
-}
-string Board_Tile::output(Board_Tile* p){
-    string output = "";
-    output = p->getParent()->getConfig();
-    return output;
 }
 bool operator>(const Board_Tile &lhs, const Board_Tile &rhs)
 {

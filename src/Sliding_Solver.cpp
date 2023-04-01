@@ -34,14 +34,13 @@ int Sliding_Solver::Solve_Puzzle()
      vector<Board_Tile*> nextconfigs = CurrentBoard->nextConfigs(FinalConfig);
 
 
-    for (int i = 0; i < nextconfigs.size(); i++) {
+    for (unsigned int i = 0; i < nextconfigs.size(); i++) {
         Board_Tile* child = nextconfigs[i];
         if (visitedStates.find(child->getConfig()) == visitedStates.end()) {
         tileQueue.push(child);
         visitedStates.insert(child->getConfig());
       } else {
         delete child;
-       
       }
     }
 }

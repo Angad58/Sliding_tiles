@@ -40,7 +40,6 @@ public:
     void calculateKey(const Board_Tile &g);
     Board_Tile* getParent();
    friend bool operator>(const Board_Tile &lhs, const Board_Tile &rhs);
-   string output (Board_Tile* p);
    void setMove(char m);
 private:
     string config;
